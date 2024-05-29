@@ -1,4 +1,6 @@
+
 import Link from "next/link";
+import { db } from "~/server/db";
 const mockUrls = [
   "https://utfs.io/f/31e5eadf-54c5-4565-b703-597a2129635b-o8t9sk.png",
   "https://utfs.io/f/5e4fa48a-256c-4a6c-b45d-457513f31d7b-o8t8cy.png",
@@ -13,12 +15,16 @@ url,
 }));
 
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await db.query.posts.findMany();
+  
+  console.log(posts);
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       hello, kya haal hai?
 
       <div className=" flex flex-wrap gap-4">
+        <h1>{posts[0]?.name}</h1>
         {[...mockImages,...mockImages,...mockImages].map((image) => (
           <div key={image.id} className = "w-48 h-40 mb-4">
             <img src={image.url} alt = "image" />

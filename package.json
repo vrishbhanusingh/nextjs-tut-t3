@@ -7,7 +7,7 @@
     "build": "next build",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "dev": "next dev --turbo",
+    "dev": "next dev -H 127.0.0.1 --turbo",
     "lint": "next lint",
     "start": "next start"
   },
