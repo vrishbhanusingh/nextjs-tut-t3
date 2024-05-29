@@ -6,7 +6,7 @@ export default {
   schema: "./src/server/db/schema.ts",
   dialect: "postgresql",
   dbCredentials: {
-    url: env.DATABASE_URL,
+    url: process.env.POSTGRES_URL!,
   },
   tablesFilter: ["nextjs-tut-t3_*"],
 } satisfies Config;
