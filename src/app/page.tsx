@@ -1,8 +1,9 @@
 
 
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { db } from "~/server/db";
 export const dynamic = "force-dynamic";
-import { desc, asc } from 'drizzle-orm';
+// import { desc } from 'drizzle-orm';
 
 const mockUrls = [
   "https://utfs.io/f/31e5eadf-54c5-4565-b703-597a2129635b-o8t9sk.png",
@@ -20,23 +21,33 @@ url,
 
 export default async function HomePage() {
   const images = await db.query.images.findMany({
-    orderBy: (images, { asc }) => [asc(images.id)],
+    orderBy: (images, { desc }) => [desc(images.id)],
   });
 
   
-  console.log(images);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      hello, kya haal hai?
-
+      <SignedOut>
+        <div className="h-full w-full text-2xl text-center">
+        hello, kya haal hai?
+        Please sign in above
+        </div>
+        
+        </SignedOut> 
+      
+      <div className="flex flex-row">
+      <SignedIn>
       <div className=" flex flex-wrap gap-4">
         <div className="flex flex-col">
         {images.map((image) => (
-          <div key={image.id} className = "flex flex-col w-48 h-40 mb-4"> <img src={image.url} alt = "image" />
+          <div key={image.id} className = "flex flex-col w-48 h-40 mb-4"> <img src={image?.url} alt = "image" />
           <div>{image.name} </div>
           </div>
         ))}
       </div>
+      </div>
+      </SignedIn>
       </div>
     </main>
   );
