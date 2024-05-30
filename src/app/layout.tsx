@@ -3,7 +3,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { ClerkProvider } from "@clerk/nextjs";
-import { TopNav } from "~/_components/TopNav";
+import { TopNav } from "~/components/TopNav";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
  
