@@ -18,11 +18,12 @@ import {
  */
 export const createTable = pgTableCreator((name) => `nextjs-tut-t3_${name}`);
 
-export const posts = createTable(
-  "post",
+export const images = createTable(
+  "images",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
+    name: varchar("name", { length: 256 }).notNull(),
+    url: varchar("url", {length:1024}),
     createdAt: timestamp('createdAt').defaultNow().notNull(),
     updatedAt: timestamp("updatedAt", { withTimezone: true }),
   },
